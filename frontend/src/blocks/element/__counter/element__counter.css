@@ -1,0 +1,7 @@
+.element__counter {
+  font-size: 13px;
+  font-weight: 400;
+  position: absolute;
+  right: 28px;
+  bottom: 22px;
+}

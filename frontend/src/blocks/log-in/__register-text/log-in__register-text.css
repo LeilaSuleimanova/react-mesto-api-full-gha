@@ -1,0 +1,21 @@
+.log-in__register-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0;
+  border-style: none;
+  color: white;
+  text-decoration: none;
+  padding-top: 15px;
+}
+
+.log-in__register-text:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 610px) {
+  .log-in__register-text {
+    line-height: 16px;
+  }
+}

@@ -1,0 +1,8 @@
+.log-in {
+  margin-top: 60px;
+  width: 358px;
+  margin-bottom: 200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}

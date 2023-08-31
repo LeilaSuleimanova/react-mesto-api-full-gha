@@ -1,0 +1,17 @@
+.header__log-in {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0;
+  border-style: none;
+  color: white;
+  text-decoration: none;
+  padding-left: 24px;
+}
+
+@media screen and (max-width: 610px) {
+  .header__log-in {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}

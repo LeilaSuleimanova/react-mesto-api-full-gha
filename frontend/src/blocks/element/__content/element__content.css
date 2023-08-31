@@ -1,0 +1,9 @@
+.element__content {
+  border-radius: 0 0 10px 10px;
+  background-color: white;
+  color: black;
+  max-width: 282px;
+  display: flex;
+  justify-content: space-between;
+  min-height: 79px;
+}

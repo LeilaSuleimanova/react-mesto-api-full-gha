@@ -1,0 +1,20 @@
+.info-tooltip {
+  left: 35%;
+  top: 20%;
+  max-width: 430px;
+  width: 100%;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.15);
+  max-height: 330px;
+}
+
+@media screen and (max-width: 610px) {
+  .info-tooltip {
+    width: 280px;
+    height: 308px;
+    left: 0;
+    top: 15%;
+    width: 100%;
+  }
+}

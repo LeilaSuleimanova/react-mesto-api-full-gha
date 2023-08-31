@@ -1,0 +1,20 @@
+.profile {
+  max-width: 880px;
+  min-height: 120px;
+  padding-top: 40px;
+  position: relative;
+}
+
+@media screen and (max-width: 900px) {
+  .profile {
+    max-width: 581px;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .profile {
+    max-width: 320px;
+    padding-top: 38px;
+    position: none;
+  }
+}
