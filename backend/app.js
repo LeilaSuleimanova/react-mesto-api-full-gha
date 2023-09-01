@@ -17,7 +17,6 @@ const limiter = rateLimit({
 });
 
 app.use(cors());
-app.use(limiter);
 app.use(helmet());
 
 app.use(bodyParser.json());
@@ -27,10 +26,9 @@ mongoose.connect(DB_URL, {
   useNewUrlParser: true,
 });
 
-app.use('/', require('./routes/index'));
-
 app.use(errors());
-
+app.use('/', require('./routes/index'));
+app.use(limiter);
 app.use(errorHandle);
 
 app.listen(PORT);
