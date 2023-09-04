@@ -58,6 +58,37 @@ function App() {
     document.removeEventListener("keydown", closePopupsByEsc);
   }, [setStatesClosePopup, closePopupsByEsc]);
 
+  useEffect(() => {
+    const tokenCheck = () => {
+      const token = localStorage.getItem("jwt");
+      authorization
+        .getToken(token)
+        .then((res) => {
+          if (res) {
+            setLogIn(true);
+            navigate("/");
+            setUserEmail(res.email);
+          }
+        })
+        .catch((err) => console.error(err));
+    };
+    tokenCheck();
+  }, [navigate]);
+
+  useEffect(() => {
+    logIn &&
+      Promise.all([
+        api.getData(localStorage.jwt),
+        api.getInitialCards(localStorage.jwt),
+      ])
+        .then(([infoUser, infoCard]) => {
+          setCurrentUser(infoUser);
+          setCard(infoCard);
+          infoCard.forEach((item) => (item.myId = infoUser._id));
+        })
+        .catch((err) => console.error(err));
+  }, [logIn]);
+
   function setEventListenerDocument() {
     document.addEventListener("keydown", closePopupsByEsc);
   }
@@ -112,37 +143,6 @@ function App() {
         .catch((err) => console.error(err));
     }
   }
-
-  useEffect(() => {
-    const tokenCheck = () => {
-      const token = localStorage.getItem("jwt");
-      authorization
-        .getToken(token)
-        .then((res) => {
-          if (res) {
-            setLogIn(true);
-            navigate("/");
-            setUserEmail(res.email);
-          }
-        })
-        .catch((err) => console.error(err));
-    };
-    tokenCheck();
-  }, [navigate]);
-
-  useEffect(() => {
-    logIn &&
-      Promise.all([
-        api.getData(localStorage.jwt),
-        api.getInitialCards(localStorage.jwt),
-      ])
-        .then(([infoUser, infoCard]) => {
-          setCurrentUser(infoUser);
-          setCard(infoCard);
-          infoCard.forEach((item) => (item.myId = infoUser._id));
-        })
-        .catch((err) => console.error(err));
-  }, [logIn]);
 
   function handleCardDelete(event) {
     event.preventDefault();

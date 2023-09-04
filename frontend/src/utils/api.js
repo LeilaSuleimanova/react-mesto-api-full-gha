@@ -99,7 +99,16 @@ class Api {
 }
 
 const api = new Api({
+    // baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66',
+    // headers: {
+    //     authorization: 'fb04fe28-7bc0-4cbf-bc40-2c92feffd1a0',
+    //     'Content-Type': 'application/json'
+    // }
     baseUrl: 'https://api.leila.nomoredomainsicu.ru',
+    // baseUrl: 'http://localhost:3000',
+    // headers: {
+    //     'Content-Type': 'application/json'
+    // }
 });
 
 export default api;
