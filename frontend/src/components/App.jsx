@@ -90,18 +90,27 @@ function App() {
   }
 
   function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
-    // Отправляем запрос в API и получаем обновлённые данные карточки
-    api
-      .changeLikeCardStatus(card._id, !isLiked)
-      .then((newCard) => {
-        setCard((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
-      })
-      .catch((err) => console.error(err));
+    if (isLiked) {
+      api
+        .deleteLike(card._id, localStorage.jwt)
+        .then((newCard) => {
+          setCard((state) =>
+            state.map((c) => (c._id === card._id ? newCard : c))
+          );
+        })
+        .catch((err) => console.error(err));
+    } else {
+      api
+        .addLike(card._id, localStorage.jwt)
+        .then((newCard) => {
+          setCard((state) =>
+            state.map((c) => (c._id === card._id ? newCard : c))
+          );
+        })
+        .catch((err) => console.error(err));
+    }
   }
 
   useEffect(() => {
@@ -123,7 +132,10 @@ function App() {
 
   useEffect(() => {
     logIn &&
-      Promise.all([api.getData(), api.getInitialCards()])
+      Promise.all([
+        api.getData(localStorage.jwt),
+        api.getInitialCards(localStorage.jwt),
+      ])
         .then(([infoUser, infoCard]) => {
           setCurrentUser(infoUser);
           setCard(infoCard);
@@ -135,7 +147,7 @@ function App() {
   function handleCardDelete(event) {
     event.preventDefault();
     api
-      .deleteCard(deleteCardId)
+      .deleteCard(deleteCardId, localStorage.jwt)
       .then(() => {
         setCard(
           card.filter((element) => {
@@ -149,7 +161,7 @@ function App() {
 
   function handleUpdateUser(dataUser, reset) {
     api
-      .setUserInfo(dataUser)
+      .setUserInfo(dataUser, localStorage.jwt)
       .then((res) => {
         setCurrentUser(res);
         closePopup();
@@ -160,7 +172,7 @@ function App() {
 
   function handleUpdateAvatar(dataUser, reset) {
     api
-      .setUserAvatar(dataUser)
+      .setUserAvatar(dataUser, localStorage.jwt)
       .then((res) => {
         setCurrentUser(res);
         closePopup();
@@ -171,7 +183,7 @@ function App() {
 
   function handleAddPlaceSubmit(dataCard, reset) {
     api
-      .addNewCard(dataCard)
+      .addNewCard(dataCard, localStorage.jwt)
       .then((res) => {
         setCard([res, ...card]);
         closePopup();
