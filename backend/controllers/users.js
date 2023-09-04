@@ -11,7 +11,7 @@ const User = require('../models/user');
 const BadRequestError = require('../utils/badRequestError');
 const NotFoundError = require('../utils/notFoundError');
 
-const { SECRET_KEY } = process.env;
+const { SECRET_KEY = 'token' } = process.env;
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
