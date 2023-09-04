@@ -122,7 +122,7 @@ function App() {
           if (res) {
             setLogIn(true);
             navigate("/");
-            setUserEmail(res.data.email);
+            setUserEmail(res.email);
           }
         })
         .catch((err) => console.error(err));
