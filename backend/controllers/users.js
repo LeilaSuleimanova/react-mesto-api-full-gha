@@ -11,6 +11,8 @@ const User = require('../models/user');
 const BadRequestError = require('../utils/badRequestError');
 const NotFoundError = require('../utils/notFoundError');
 
+const { SECRET_KEY = 'token' } = process.env;
+
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.status(httpConstants.HTTP_STATUS_OK).send(users))
@@ -93,7 +95,7 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'token', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '7d' });
       res.send({ token });
     })
     .catch((err) => {
