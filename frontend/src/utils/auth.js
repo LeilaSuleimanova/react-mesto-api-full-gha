@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000'
+const baseUrl = 'http://api.leila.nomoredomainsicu.ru'
 
 const _checkResponse = (res) => {
     if (res.ok) return res.json();
