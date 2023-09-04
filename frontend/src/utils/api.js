@@ -99,7 +99,7 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'http://api.leila.nomoredomainsicu.ru',
+    baseUrl: 'https://api.leila.nomoredomainsicu.ru',
 });
 
 export default api;

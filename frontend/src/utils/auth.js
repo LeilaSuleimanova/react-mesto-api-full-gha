@@ -1,4 +1,4 @@
-const baseUrl = 'http://api.leila.nomoredomainsicu.ru'
+const baseUrl = 'https://api.leila.nomoredomainsicu.ru'
 
 const _checkResponse = (res) => {
     if (res.ok) return res.json();
