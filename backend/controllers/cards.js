@@ -47,7 +47,7 @@ module.exports.deleteCard = (req, res, next) => {
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.CastError) {
-        next(new BadRequestError('Некорректный id карточки.'));
+        next(new NotFoundError('Карточка по id не найдена.'));
       } else {
         next(err);
       }
