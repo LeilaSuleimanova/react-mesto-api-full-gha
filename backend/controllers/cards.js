@@ -43,34 +43,6 @@ module.exports.deleteCard = (req, res, next) => {
       }
     })
     .catch((err) => next(err));
-
-  // Card.findById(req.params.cardId)
-  //   .then((card) => {
-  //     if (!card.owner.equals(req.user._id)) {
-  //       throw new ForBiddenError('Карточка другого пользователя');
-  //     }
-  //     Card.deleteOne(card)
-  //       .orFail()
-  //       .then(() => {
-  //         res.status(httpConstants.HTTP_STATUS_OK).send({ message: 'Карточка удалена' });
-  //       })
-  //       .catch((err) => {
-  //         if (err instanceof mongoose.Error.CastError) {
-  //           next(new BadRequestError('Некорректный id карточки.'));
-  //         } else if (err instanceof mongoose.Error.DocumentNotFoundError) {
-  //           next(new NotFoundError('Карточка по id не найдена.'));
-  //         } else {
-  //           next(err);
-  //         }
-  //       });
-  //   })
-  //   .catch((err) => {
-  //     if (err.name === 'TypeError') {
-  //       next(new NotFoundError('Карточка по id не найдена.'));
-  //     } else {
-  //       next(err);
-  //     }
-  //   });
 };
 
 module.exports.likeCard = (req, res, next) => {
